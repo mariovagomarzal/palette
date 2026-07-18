@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "Mario's color palette",
   "scripts": {
-    "build": "tsc",
-    "check": "tsc --noEmit"
+    "build": "tsc && node scripts/build.ts",
+    "check": "tsc --noEmit",
+    "prepack": "pnpm build"
   },
   "author": "Mario Vago Marzal",
   "license": "MIT",
@@ -20,7 +21,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    }
+    },
+    "./palette.css": "./dist/palette.css"
   },
   "files": [
     "dist"
