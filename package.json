@@ -1,6 +1,6 @@
 {
   "name": "@mariovagomarzal/palette",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mario's color palette",
   "scripts": {
     "build": "tsc && node scripts/build.ts",
