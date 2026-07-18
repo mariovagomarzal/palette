@@ -14,6 +14,12 @@ build:
 
 alias b := build
 
+[doc("Publish the package to npm.")]
+publish:
+  pnpm publish
+
+alias p := publish
+
 [doc("Remove build artifacts.")]
 [confirm]
 clean:

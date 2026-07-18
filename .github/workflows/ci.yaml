@@ -1,0 +1,38 @@
+name: Check and build the package
+
+# Runs the workflow on pushes and pull requests to the main branch.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering of the workflow.
+
+# Cancel in-progress runs when a new run is triggered on the same PR or branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # Read access to repository contents.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+      - name: Cache Nix store
+        uses: cachix/cachix-action@v17
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile install github:cachix/devenv/v2.1.2
+      - name: Check the package within devenv
+        run: devenv shell just -- check
+      - name: Build the package within devenv
+        run: devenv shell just -- build

@@ -1,0 +1,44 @@
+name: Release and publish the package
+
+# Runs the workflow on pushes to the main branch.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Maintain the release PR; merging it creates the tag and the GitHub release.
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to create tags and releases.
+      pull-requests: write # Required to open and update the release PR.
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+  # Publish to npm only when the previous job just created a release.
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Read access to repository contents.
+      id-token: write # Required to authenticate against npm via trusted publishing.
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+      - name: Cache Nix store
+        uses: cachix/cachix-action@v17
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile install github:cachix/devenv/v2.1.2
+      - name: Publish the package within devenv
+        run: devenv shell just -- publish
