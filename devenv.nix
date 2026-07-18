@@ -48,7 +48,7 @@
     ".gitlint".ini = {
       general = {
         contrib = "contrib-title-conventional-commits";
-        ignore = "body-is-missing";
+        ignore = "body-is-missing,body-min-length";
       };
 
       title-max-length.line-length = 120;
