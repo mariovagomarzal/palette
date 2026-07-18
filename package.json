@@ -9,6 +9,7 @@
   },
   "author": "Mario Vago Marzal",
   "license": "MIT",
+  "repository": "github:mariovagomarzal/palette",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
