@@ -28,6 +28,14 @@ success and `blue` for links and info. Deviate when legibility asks for it.
 > The philosophy of this palette, with its flavors, its monochrome and colorful split and even this guide, is borrowed
 > from [Catppuccin][catppuccin] and its [style guide][catppuccin-style-guide].
 
+## Ports
+
+Ports adapt the palette to the formats its consumers speak. All of them ship with the package:
+
+- **CSS** (`@mariovagomarzal/palette/palette.css`): the palette as `--color-*` custom properties, with the light flavor
+  on `:root` and the dark one behind `data-theme="dark"`.
+- **Shiki** (`@mariovagomarzal/palette/shiki`): syntax highlighting themes for [Shiki][shiki], one per flavor.
+
 ## Development environment
 
 The development environment is set up using Nix and [Devenv][devenv]. Run the following command to enter the development
@@ -48,5 +56,6 @@ strict rules for branching in this repository.
 
 [catppuccin]: https://github.com/catppuccin/catppuccin
 [catppuccin-style-guide]: https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
+[shiki]: https://shiki.style
 [devenv]: https://devenv.sh
 [conventional-commits]: https://www.conventionalcommits.org/en/v1.0.0/
