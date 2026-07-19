@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/mariovagomarzal/palette/compare/v0.1.1...v0.2.0) (2026-07-19)
+
+
+### Features
+
+* add the syntax highlighting roles and the Shiki port ([e3f0be7](https://github.com/mariovagomarzal/palette/commit/e3f0be77447d5ccc68c1e1ae394804269c2c3180))
+
 ## 0.1.1 (2026-07-18)
 
 
