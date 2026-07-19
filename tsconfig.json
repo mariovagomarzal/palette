@@ -5,6 +5,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "strict": true,
+    "skipLibCheck": true,
     "verbatimModuleSyntax": true,
     "declaration": true,
     "outDir": "dist"
